@@ -1,0 +1,36 @@
+# Python virtual environment
+venv/
+env/
+.env/
+.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*.so
+*.pyo
+*.pyd
+.Python
+*.pyc
+.pytest_cache/
+.coverage
+.tox/
+.nox/
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+*.manifest
+*.spec
+.cache
+.hypothesis/
+.python-version
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
