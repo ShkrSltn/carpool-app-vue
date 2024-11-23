@@ -17,6 +17,7 @@ const login = async () => {
     
     if (response.data.access_token) {
       localStorage.setItem('token', response.data.access_token)
+      localStorage.setItem('userId', response.data.user_id)
       router.push('/setup')
     }
   } catch (err) {

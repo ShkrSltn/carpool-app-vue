@@ -5,6 +5,8 @@ import RegisterView from '../views/RegisterView.vue'
 import RideMap from '../components/Map/RideMap.vue'
 import GoogleMap from '../components/Map/GoogleMap.vue'
 import SetupPage from '@/components/Setup/SetupPage.vue'
+import SetupAddress from '@/components/Setup/SetupAddress.vue'
+import SetupRole from '@/components/Setup/SetupRole.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +30,18 @@ const router = createRouter({
       path: '/setup',
       name: 'setup',
       component: SetupPage,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/setup/address',
+      name: 'setup-address',
+      component: SetupAddress,
+      meta: { requiresAuth: true }
+    },
+    {
+      path: '/setup/role',
+      name: 'setup-role',
+      component: SetupRole,
       meta: { requiresAuth: true }
     },
     {

@@ -16,6 +16,7 @@ class UserCreate(UserBase):
 class Token(BaseModel):
     access_token: str
     token_type: str
+    user_id: int
 
 class UserResponse(UserBase):
     user_id: int = Field(..., alias='id')

@@ -23,7 +23,12 @@ export const apiService = {
     },
 
     login: async (credentials) => {
-        return await axiosInstance.post('/auth/login/', credentials)
+        const response = await axiosInstance.post('/users/login', credentials)
+        if (response.data.access_token) {
+            localStorage.setItem('token', response.data.access_token)
+            localStorage.setItem('userId', response.data.user_id.toString())
+        }
+        return response.data
     },
 
     // Users
@@ -38,5 +43,14 @@ export const apiService = {
     // Cars
     addUserCar: async (carData) => {
         return await axiosInstance.post('/users/me/cars', carData)
+    },
+
+    updateUserAddress: async (userId, data) => {
+        return await axiosInstance.post(`/favourite-places/user/${userId}`, {
+            name: 'Home',
+            address: data.address,
+            latitude: data.latitude || 0,
+            longitude: data.longitude || 0
+        })
     }
 } 

@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { authApi } from '@/api'
+import { usersApi } from '@/api'
 
 const router = useRouter()
 const email = ref('')
@@ -13,16 +13,18 @@ const error = ref('')
 
 const register = async () => {
   try {
-    const response = await authApi.register({
+    const response = await usersApi.register({
       email: email.value,
       username: username.value,
       password: password.value,
       name: name.value,
-      surname: surname.value
+      surname: surname.value,
+      car: {}
     })
     
     if (response.data) {
-      router.push('/setup')
+      localStorage.setItem('userId', response.data.user_id)
+      router.push('/login')
     }
   } catch (err) {
     error.value = err.response?.data?.detail || 

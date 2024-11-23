@@ -88,7 +88,7 @@ export default {
         await apiService.addUserCar(carData.value)
         
         // Redirect to home or next setup page
-        router.push('/home')
+        router.push('/setup/address')
       } catch (err) {
         error.value = err.response?.data?.detail || 'Failed to add car'
         if (err.response?.status === 401) {
@@ -164,5 +164,38 @@ export default {
   color: #dc3545;
   margin-bottom: 15px;
   text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .setup-page {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .car-form {
+    max-width: 100%;
+  }
+
+  .form-input {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .next-button {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }
 </style>
