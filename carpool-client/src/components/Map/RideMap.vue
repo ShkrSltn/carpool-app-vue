@@ -50,7 +50,7 @@
     try {
       const google = await loader.load()
       const map = new google.maps.Map(mapDiv.value, {
-        center: { lat: 55.7558, lng: 37.6173 },
+        center: { lat: 47.0270, lng: 8.6526 },
         zoom: 12
       })
   

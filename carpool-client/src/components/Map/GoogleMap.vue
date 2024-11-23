@@ -12,7 +12,7 @@ const mapDiv = ref(null)
 const props = defineProps({
   center: {
     type: Object,
-    default: () => ({ lat: 55.7558, lng: 37.6173 }) // Москва по умолчанию
+    default: () => ({ lat: 47.0270, lng: 8.6527 }) // Schwyz, Switzerland
   },
   zoom: {
     type: Number,

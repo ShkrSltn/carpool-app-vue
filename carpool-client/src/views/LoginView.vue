@@ -17,7 +17,7 @@ const login = async () => {
     
     if (response.data.access_token) {
       localStorage.setItem('token', response.data.access_token)
-      router.push('/rides')
+      router.push('/setup')
     }
   } catch (err) {
     error.value = err.response?.data?.detail || 'Ошибка при входе'
