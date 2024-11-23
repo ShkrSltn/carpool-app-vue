@@ -52,5 +52,24 @@ export const apiService = {
             latitude: data.latitude || 0,
             longitude: data.longitude || 0
         })
+    },
+
+    getFavouritePlaces: async () => {
+        const userId = localStorage.getItem('userId')
+        return await axiosInstance.get(`/favourite-places/user/${userId}`)
+    },
+
+    getUserCars: async () => {
+        const userId = localStorage.getItem('userId')
+        if (!userId) throw new Error('User ID not found')
+        return await axiosInstance.get(`/cars/user/${userId}`)
+    },
+
+    createRide: async (rideData) => {
+        return await axiosInstance.post('/rides', rideData)
+    },
+
+    createSchedule: async (scheduleData) => {
+        return await axiosInstance.post('/schedules', scheduleData)
     }
 } 

@@ -7,6 +7,7 @@ import GoogleMap from '../components/Map/GoogleMap.vue'
 import SetupPage from '@/components/Setup/SetupPage.vue'
 import SetupAddress from '@/components/Setup/SetupAddress.vue'
 import SetupRole from '@/components/Setup/SetupRole.vue'
+import CreateRide from '@/components/Ride/CreateRide.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -53,6 +54,12 @@ const router = createRouter({
       path: '/google-map',
       name: 'google-map',
       component: GoogleMap
+    },
+    {
+      path: '/create-ride',
+      name: 'create-ride',
+      component: CreateRide,
+      meta: { requiresAuth: true }
     }
   ]
 })
