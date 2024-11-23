@@ -8,6 +8,8 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/">Главная</RouterLink>
       <RouterLink to="/login">Вход</RouterLink>
       <RouterLink to="/register">Регистрация</RouterLink>
+      <RouterLink to="/map">Карта поездок</RouterLink>
+      <RouterLink to="/google-map">Google Карта</RouterLink>
     </nav>
   </header>
 
