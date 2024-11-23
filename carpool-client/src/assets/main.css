@@ -2,8 +2,42 @@
 
 body {
   height: 100dvh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 #app {
+  display: flex;
+  flex-direction: column;
   height: inherit;
+}
+
+main {
+  flex: 1;
+  padding: 1rem;
+}
+
+.footer {
+  background-color: #f7f7f7;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-top: 1px solid #ddd;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: #e8423f;
+}
+
+a:hover {
+  text-decoration: underline;
 }

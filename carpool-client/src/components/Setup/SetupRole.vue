@@ -1,9 +1,5 @@
 <template>
     <div class="setup-page">
-      <div class="header">
-        <button class="back-button" @click="$router.go(-1)">←</button>
-        <h1>Setup</h1>
-      </div>
   
       <div class="role-selection">
         <div class="success-icon">

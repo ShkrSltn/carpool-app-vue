@@ -1,8 +1,7 @@
 <template>
   <div class="create-ride">
     <div class="header">
-      <router-link to="/" class="back-arrow">←</router-link>
-      <h1>Create Ride</h1>
+      <h1>Create a Ride</h1>
     </div>
 
     <form @submit.prevent="handleSubmit">

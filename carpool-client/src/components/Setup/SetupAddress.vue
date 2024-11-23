@@ -1,7 +1,6 @@
 <template>
     <div class="setup-page">
       <div class="header">
-        <button class="back-button" @click="$router.go(-1)">←</button>
         <h1>Setup Profile</h1>
       </div>
   

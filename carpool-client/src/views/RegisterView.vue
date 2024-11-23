@@ -100,13 +100,13 @@ const register = async () => {
 
         <div class="form-actions">
           <button type="submit" class="register-button">Register</button>
-          <p class="login-text">
-            Already have an account? 
-            <router-link to="/login" class="login-link">Login</router-link>
-          </p>
         </div>
       </form>
     </div>
+    <p class="login-text">
+      Already have an account? 
+      <router-link to="/login" class="login-link">Login</router-link>
+    </p>
   </div>
 </template>
 
@@ -116,13 +116,13 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: inherit;
 }
 
 .page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: inherit;
 }
 
 .register-container {
@@ -147,7 +147,7 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 4rem;
+  padding: 1rem;
 }
 
 .form-group {

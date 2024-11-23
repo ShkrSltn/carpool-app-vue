@@ -1,17 +1,20 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { useRoute, RouterView } from 'vue-router';
+
+const route = useRoute();
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/login">Вход</RouterLink>
-      <RouterLink to="/register">Регистрация</RouterLink>
-      <RouterLink to="/map">Карта поездок</RouterLink>
-      <RouterLink to="/google-map">Google Карта</RouterLink>
-      <RouterLink to="/create-ride">Создать поездку</RouterLink>
-    </nav>
-  </header>
+  <div id="app">
+    <main>
+      <RouterView />
+    </main>
 
-  <RouterView />
+    <footer v-if="!['/login', '/register'].includes(route.path)" class="footer">
+      <nav>
+        <RouterLink to="/setup/role">Change Role</RouterLink>
+        <RouterLink to="/create-ride">Create a Ride</RouterLink>
+      </nav>
+    </footer>
+  </div>
 </template>

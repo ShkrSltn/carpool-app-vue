@@ -2,8 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
-import RideMap from '../components/Map/RideMap.vue'
-import GoogleMap from '../components/Map/GoogleMap.vue'
 import SetupPage from '@/components/Setup/SetupPage.vue'
 import SetupAddress from '@/components/Setup/SetupAddress.vue'
 import SetupRole from '@/components/Setup/SetupRole.vue'
@@ -44,16 +42,6 @@ const router = createRouter({
       name: 'setup-role',
       component: SetupRole,
       meta: { requiresAuth: true }
-    },
-    {
-      path: '/map',
-      name: 'map',
-      component: RideMap
-    },
-    {
-      path: '/google-map',
-      name: 'google-map',
-      component: GoogleMap
     },
     {
       path: '/create-ride',
