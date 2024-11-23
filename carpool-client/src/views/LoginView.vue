@@ -100,7 +100,7 @@ h2 {
   width: 100%;
   height: inherit;
   display: flex;
-  padding: 4rem;
+  padding: 1rem;
   flex-direction: column;
   gap: 1rem;
 }

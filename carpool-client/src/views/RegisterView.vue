@@ -1,106 +1,112 @@
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { usersApi } from '@/api'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { authApi } from '@/api';
 
-const router = useRouter()
-const email = ref('')
-const password = ref('')
-const name = ref('')
-const surname = ref('')
-const username = ref('')
-const error = ref('')
+const router = useRouter();
+const email = ref('');
+const password = ref('');
+const firstName = ref('');
+const lastName = ref('');
+const username = ref('');
+const error = ref('');
 
 const register = async () => {
   try {
-    const response = await usersApi.register({
-      email: email.value,
-      username: username.value,
-      password: password.value,
-      name: name.value,
-      surname: surname.value,
-      car: {}
-    })
-    
+    const response = await authApi.register({
+    email: email.value,
+    username: username.value,
+    password: password.value,
+    name: firstName.value,   // Map firstName to name
+    surname: lastName.value  // Map lastName to surname
+  });
+
     if (response.data) {
-      localStorage.setItem('userId', response.data.user_id)
-      router.push('/login')
+      router.push('/login');
     }
   } catch (err) {
-    error.value = err.response?.data?.detail || 
-                  (Array.isArray(err.response?.data) ? err.response.data[0]?.msg : 'Ошибка при регистрации')
+    error.value =
+      err.response?.data?.detail ||
+      (Array.isArray(err.response?.data)
+        ? err.response.data[0]?.msg
+        : 'Error during registration');
   }
-}
+};
 </script>
 
 <template>
-  <div class="register-container">
-    <h2>Регистрация</h2>
-    <form @submit.prevent="register" class="register-form">
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input 
-          id="email"
-          type="email" 
-          v-model="email" 
-          required
-          placeholder="Введите email"
-        >
-      </div>
+  <div class="page-container">
+    <div class="register-container">
+      <h2>Registration</h2>
+      <form @submit.prevent="register" class="register-form">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            type="email"
+            v-model="email"
+            required
+            placeholder="Enter email"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="username">Имя пользователя:</label>
-        <input 
-          id="username"
-          type="text" 
-          v-model="username" 
-          required
-          placeholder="Введите имя пользователя"
-        >
-      </div>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            id="username"
+            type="text"
+            v-model="username"
+            required
+            placeholder="Enter username"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="name">Имя:</label>
-        <input 
-          id="name"
-          type="text" 
-          v-model="name" 
-          required
-          placeholder="Введите имя"
-        >
-      </div>
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input
+            id="firstName"
+            type="text"
+            v-model="firstName"
+            required
+            placeholder="Enter first name"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="surname">Фамилия:</label>
-        <input 
-          id="surname"
-          type="text" 
-          v-model="surname" 
-          required
-          placeholder="Введите фамилию"
-        >
-      </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input
+            id="lastName"
+            type="text"
+            v-model="lastName"
+            required
+            placeholder="Enter last name"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="password">Пароль:</label>
-        <input 
-          id="password"
-          type="password" 
-          v-model="password" 
-          required
-          placeholder="Введите пароль"
-        >
-      </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            id="password"
+            type="password"
+            v-model="password"
+            required
+            placeholder="Enter password"
+          />
+        </div>
 
-      <div v-if="error" class="error-message">
-        {{ error }}
-      </div>
+        <div v-if="error" class="error-message">
+          {{ error }}
+        </div>
 
-      <div class="form-actions">
-        <button type="submit" class="register-button">Зарегистрироваться</button>
-        <router-link to="/login" class="login-link">Уже есть аккаунт? Войти</router-link>
-      </div>
-    </form>
+        <div class="form-actions">
+          <button type="submit" class="register-button">Register</button>
+          <p class="login-text">
+            Already have an account? 
+            <router-link to="/login" class="login-link">Login</router-link>
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
