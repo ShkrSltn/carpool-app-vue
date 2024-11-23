@@ -1,12 +1,11 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
   <header>
     <nav>
-      <RouterLink to="/login">Вход</RouterLink>
-      <RouterLink to="/register">Регистрация</RouterLink>
+      <Registration />
     </nav>
   </header>
 

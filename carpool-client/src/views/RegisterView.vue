@@ -1,15 +1,15 @@
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { authApi } from '@/api'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import { authApi } from '@/api';
 
-const router = useRouter()
-const email = ref('')
-const password = ref('')
-const name = ref('')
-const surname = ref('')
-const username = ref('')
-const error = ref('')
+const router = useRouter();
+const email = ref('');
+const password = ref('');
+const firstName = ref('');
+const lastName = ref('');
+const username = ref('');
+const error = ref('');
 
 const register = async () => {
   try {
@@ -17,111 +17,137 @@ const register = async () => {
       email: email.value,
       username: username.value,
       password: password.value,
-      name: name.value,
-      surname: surname.value
-    })
-    
+      name: firstName.value,
+      surname: lastName.value,
+    });
+
     if (response.data) {
-      router.push('/login')
+      router.push('/login');
     }
   } catch (err) {
-    error.value = err.response?.data?.detail || 
-                  (Array.isArray(err.response?.data) ? err.response.data[0]?.msg : 'Ошибка при регистрации')
+    error.value =
+      err.response?.data?.detail ||
+      (Array.isArray(err.response?.data)
+        ? err.response.data[0]?.msg
+        : 'Error during registration');
   }
-}
+};
 </script>
 
 <template>
-  <div class="register-container">
-    <h2>Регистрация</h2>
-    <form @submit.prevent="register" class="register-form">
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input 
-          id="email"
-          type="email" 
-          v-model="email" 
-          required
-          placeholder="Введите email"
-        >
-      </div>
+  <div class="page-container">
+    <div class="register-container">
+      <h2>Registration</h2>
+      <form @submit.prevent="register" class="register-form">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            id="email"
+            type="email"
+            v-model="email"
+            required
+            placeholder="Enter email"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="username">Имя пользователя:</label>
-        <input 
-          id="username"
-          type="text" 
-          v-model="username" 
-          required
-          placeholder="Введите имя пользователя"
-        >
-      </div>
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input
+            id="username"
+            type="text"
+            v-model="username"
+            required
+            placeholder="Enter username"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="name">Имя:</label>
-        <input 
-          id="name"
-          type="text" 
-          v-model="name" 
-          required
-          placeholder="Введите имя"
-        >
-      </div>
+        <div class="form-group">
+          <label for="firstName">First Name:</label>
+          <input
+            id="firstName"
+            type="text"
+            v-model="firstName"
+            required
+            placeholder="Enter first name"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="surname">Фамилия:</label>
-        <input 
-          id="surname"
-          type="text" 
-          v-model="surname" 
-          required
-          placeholder="Введите фамилию"
-        >
-      </div>
+        <div class="form-group">
+          <label for="lastName">Last Name:</label>
+          <input
+            id="lastName"
+            type="text"
+            v-model="lastName"
+            required
+            placeholder="Enter last name"
+          />
+        </div>
 
-      <div class="form-group">
-        <label for="password">Пароль:</label>
-        <input 
-          id="password"
-          type="password" 
-          v-model="password" 
-          required
-          placeholder="Введите пароль"
-        >
-      </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            id="password"
+            type="password"
+            v-model="password"
+            required
+            placeholder="Enter password"
+          />
+        </div>
 
-      <div v-if="error" class="error-message">
-        {{ error }}
-      </div>
+        <div v-if="error" class="error-message">
+          {{ error }}
+        </div>
 
-      <div class="form-actions">
-        <button type="submit" class="register-button">Зарегистрироваться</button>
-        <router-link to="/login" class="login-link">Уже есть аккаунт? Войти</router-link>
-      </div>
-    </form>
+        <div class="form-actions">
+          <button type="submit" class="register-button">Register</button>
+          <p class="login-text">
+            Already have an account? 
+            <router-link to="/login" class="login-link">Login</router-link>
+          </p>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
 <style scoped>
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .register-container {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  flex: 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 h2 {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 2rem;
+  color: black;
+  font-weight: bold;
+  margin-bottom: -0.5rem;
 }
 
 .register-form {
+  width: 100%;
+  height: inherit;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 4rem;
 }
 
 .form-group {
@@ -145,7 +171,7 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #42b983;
+  border-color: black;
 }
 
 .error-message {
@@ -163,7 +189,7 @@ input:focus {
 }
 
 .register-button {
-  background-color: #42b983;
+  background-color: #e8423f;
   color: white;
   padding: 0.75rem;
   border: none;
@@ -174,17 +200,22 @@ input:focus {
 }
 
 .register-button:hover {
-  background-color: #3aa876;
+  background-color: #d6362c;
+}
+
+.login-text {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .login-link {
-  text-align: center;
-  color: #666;
+  font-weight: bold;
+  color: #e8423f;
   text-decoration: none;
-  font-size: 0.9rem;
 }
 
 .login-link:hover {
-  color: #42b983;
+  text-decoration: underline;
 }
-</style> 
+</style>
