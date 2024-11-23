@@ -111,25 +111,43 @@ const register = async () => {
 </template>
 
 <style scoped>
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .register-container {
-  max-width: 400px;
-  margin: 2rem auto;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  flex: 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
 }
 
 h2 {
   text-align: center;
-  color: #2c3e50;
-  margin-bottom: 2rem;
+  color: black;
+  font-weight: bold;
+  margin-bottom: -0.5rem;
 }
 
 .register-form {
+  width: 100%;
+  height: inherit;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  padding: 4rem;
 }
 
 .form-group {
@@ -153,7 +171,7 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #42b983;
+  border-color: black;
 }
 
 .error-message {
@@ -171,7 +189,7 @@ input:focus {
 }
 
 .register-button {
-  background-color: #42b983;
+  background-color: #e8423f;
   color: white;
   padding: 0.75rem;
   border: none;
@@ -182,17 +200,22 @@ input:focus {
 }
 
 .register-button:hover {
-  background-color: #3aa876;
+  background-color: #d6362c;
+}
+
+.login-text {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #666;
 }
 
 .login-link {
-  text-align: center;
-  color: #666;
+  font-weight: bold;
+  color: #e8423f;
   text-decoration: none;
-  font-size: 0.9rem;
 }
 
 .login-link:hover {
-  color: #42b983;
+  text-decoration: underline;
 }
-</style> 
+</style>
