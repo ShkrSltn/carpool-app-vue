@@ -15,8 +15,26 @@ def create_schedule(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user)
 ):
-    """Create new schedule for current user"""
-    return schedule.create(db=db, obj_in=schedule_in, user_id=current_user.id)
+    """Create new schedule for current user or update if exists"""
+    try:
+        return schedule.create(db=db, obj_in=schedule_in, user_id=current_user.id)
+    except HTTPException as e:
+        if e.status_code == 400 and "already exists" in str(e.detail):
+            # Get existing schedule
+            existing = db.query(schedule.model).filter(
+                schedule.model.user_id == current_user.id,
+                schedule.model.day_of_week == schedule_in.day_of_week,
+                schedule.model.is_active == True
+            ).first()
+            
+            # Update existing schedule
+            return schedule.update_schedule(
+                db=db,
+                schedule_id=existing.schedule_id,
+                user_id=current_user.id,
+                obj_in=schedule_in
+            )
+        raise e
 
 @router.get("/me", response_model=List[UserScheduleResponse])
 def read_my_schedule(

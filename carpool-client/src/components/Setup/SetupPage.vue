@@ -50,6 +50,12 @@
 
         <button type="submit" class="next-button">Next</button>
       </form>
+
+      <div class="skip-section">
+        <button @click="skipCarSetup" class="skip-button">
+          I don't have a car
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -98,10 +104,15 @@ export default {
       }
     }
 
+    const skipCarSetup = () => {
+      router.push('/setup/address')
+    }
+
     return {
       carData,
       error,
-      handleSubmit
+      handleSubmit,
+      skipCarSetup
     }
   }
 }
@@ -166,6 +177,25 @@ export default {
   text-align: center;
 }
 
+.skip-section {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.skip-button {
+  background: none;
+  border: none;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.skip-button:hover {
+  color: #333;
+}
+
 @media screen and (max-width: 768px) {
   .setup-page {
     padding: 15px;
@@ -196,6 +226,10 @@ export default {
 
   h2 {
     font-size: 20px;
+  }
+
+  .skip-button {
+    font-size: 13px;
   }
 }
 </style>
