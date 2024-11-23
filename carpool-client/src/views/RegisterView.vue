@@ -22,7 +22,7 @@ const register = async () => {
     });
 
     if (response.data) {
-      router.push('/login');
+      router.push('/setup')
     }
   } catch (err) {
     error.value =

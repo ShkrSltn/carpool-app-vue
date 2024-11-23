@@ -16,8 +16,8 @@ const login = async () => {
     });
 
     if (response.data.access_token) {
-      localStorage.setItem('token', response.data.access_token);
-      router.push('/rides');
+      localStorage.setItem('token', response.data.access_token)
+      router.push('/setup')
     }
   } catch (err) {
     error.value = err.response?.data?.detail || 'Error during login';
